@@ -1,8 +1,26 @@
-$(document).ready(function(){
-    function myFunc(){
+var repeticion = 1;
+var incrementar = false;
+
+$(document).ready(function(){     
+    function testTextArea(){
         var input = $("#slashdot").val();
-        $("#txtHere").text(input);
+        var regex = getRegexp();
+        if (regex.test(input)) {
+            incrementar = true;
+            $("#txtHere").append("Punto!<br>");
+            $("#slashdot").val('');
+        }
     }
-    myFunc();
-    $("#slashdot").keyup(myFunc);
+
+    function getRegexp(){
+        if (incrementar){
+            repeticion +=1;
+            incrementar = false;
+        }
+        var puntos = new RegExp("(\\.)+", "g");
+        var picos = new RegExp("(\>){" + repeticion + "}", "g");
+        var REGEXP = new RegExp(puntos.source + picos.source + puntos.source, "g");
+        return REGEXP;
+    }
+    $("#slashdot").keydown(testTextArea);
 });
