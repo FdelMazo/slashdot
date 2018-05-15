@@ -5,6 +5,7 @@ var sumatoriaAnt = 0;
 var nivel = 0;
 
 $(document).ready(function(){     
+    $("#slashdot").val('');
     
     function jugar(){    
         var input = $("#slashdot").val();
@@ -23,11 +24,12 @@ $(document).ready(function(){
     }
 
     function perder(){
-        $("#resultados").text("Perdiste :(");
-        $("#slashdot").val('');
+        $("#record").text("Record: ");   
+        $("#record").append(nivel -1);   
         sumatoria = 0
         nivel = 0
         sumatoriaAnt = 0
+        $("#slashdot").val('');
     }
 
     function incrementar(){
@@ -35,14 +37,14 @@ $(document).ready(function(){
             sumatoria = 1
         }
         else {
-            $("#resultados").append("Punto!! - "+ nivel + "<br>");
+            $("#puntos").text("Puntos: ");   
+            $("#puntos").append(nivel);   
             sumatoriaAnt = sumatoria
             sumatoria = sumatoria + (nivel+1)
         }
         nivel += 1;
     }
 
-    var bool = true
     $(document).bind("keydown", function (event) {
         if (event.keyCode == 190 && !event.shiftKey) { //40 is the keyCode of down arrow key
             jugar()
