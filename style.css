@@ -2,10 +2,19 @@ header, footer {
     text-align: center;
 }
 
+html {
+    background: indigo;
+     /* Fondo celeste con ..>.. repetidos */
+}
+
 body {
-    width: 100%;
-    height: 100%;
+    background: lightblue;
+     /* Alguna otra matiz de azul*/
+    width: 70%;
+    margin: 10 auto auto;
+    margin-bottom: 30;
     text-align: center;
+    padding: 30px;
 }
 
 var {
@@ -28,8 +37,10 @@ hr {
     margin: 50px 100px ;
 }
 #slashdot {
+    background: lightslategray; 
+    /*stripes*/
     height: 40%;
-    width: 50%;
+    width: 80%;
 }
 
 table  {
