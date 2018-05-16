@@ -21,8 +21,9 @@ $(document).ready(function(){
     }
 
     function perder(){
-        var recordAct = $("#recordVal").val();   
-        if (nivel-1 > recordAct){
+        var recordAnt = $("#recordVal").text(); 
+        var recordAct = nivel-1;
+        if (recordAct > recordAnt){
             $("#recordVal").text(nivel -1);
         }   
         sumatoria = 0
