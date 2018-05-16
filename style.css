@@ -2,18 +2,18 @@ body {
     
 }
 
-#instrucciones {
+.instrucciones {
 
 }
 
-#puntos {
+.puntos {
     color: green;
 }
 
-#slashdot {
+.slashdot {
 
 }
 
-#record {
+.record {
     color: blue;
 }

@@ -24,8 +24,10 @@ $(document).ready(function(){
     }
 
     function perder(){
-        $("#record").text("Record: ");   
-        $("#record").append(nivel -1);   
+        var recordAct = $("#recordVal").val();   
+        if (nivel-1 > recordAct){
+            $("#recordVal").text(nivel -1);
+        }   
         sumatoria = 0
         nivel = 0
         sumatoriaAnt = 0
@@ -37,17 +39,31 @@ $(document).ready(function(){
             sumatoria = 1
         }
         else {
-            $("#puntos").text("Puntos: ");   
-            $("#puntos").append(nivel);   
+            $("#puntosVal").text(nivel);   
             sumatoriaAnt = sumatoria
             sumatoria = sumatoria + (nivel+1)
         }
         nivel += 1;
     }
 
+    function latamToEng(){
+        var input = $("#slashdot").val();
+        $("#slashdot").val(input.replace(/\:/g, ">")); 
+    }
+
     $(document).bind("keydown", function (event) {
-        if (event.keyCode == 190 && !event.shiftKey) { //40 is the keyCode of down arrow key
+        if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
             jugar()
+        }
+    });
+
+    $(document).bind("keyup", function (event) {
+
+        if (event.shiftKey) { 
+            latamToEng() // Si usa layout argentino, el shift . cambia de : a >
+        }
+        if (event.keyCode == 190 && !event.shiftKey) { 
+            perder()
         }
     });
     
