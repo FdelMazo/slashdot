@@ -39,6 +39,7 @@ hr {
     margin: 50px 100px ;
 }
 #slashdot {
+    padding: 25px;
     border: double black 5px ;
     /*background: repeating-linear-gradient(
         135deg,
