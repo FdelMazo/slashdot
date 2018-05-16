@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 header, footer {
     text-align: center;
 }
@@ -16,6 +18,7 @@ body {
     margin-bottom: 30;
     text-align: center;
     padding: 30px;
+    font-family: "Source Sans Pro";
 }
 
 var {
@@ -28,11 +31,11 @@ var {
 }
 
 #puntos {
-    color: green;
+    color: darkgreen;
 }
 
 #record {
-    color: blue;
+    color: darkblue;
 }
 
 hr { 
@@ -41,12 +44,14 @@ hr {
 #slashdot {
     padding: 25px;
     border: double black 5px ;
+    font-size: 14px;
+    font-weight: bold;
     /*background: repeating-linear-gradient(
         135deg,
         white,
         white 5px,
-        lightblue 5px,
-        lightblue 10px
+        paleturquoise 5px,
+        paleturquoise 10px
       );*/
     height: 40%;
     width: 80%;
@@ -56,7 +61,14 @@ table  {
     margin: 0 auto;
     border: double black 5px ;
     border-collapse: collapse;
-    text-align: left;
+    text-align: center;
+    background: repeating-linear-gradient(
+        135deg,
+        white,
+        white 10px,
+        paleturquoise 10px,
+        paleturquoise 20px
+    );
     word-wrap: normal;
 }
 
