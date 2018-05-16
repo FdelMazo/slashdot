@@ -1,16 +1,39 @@
  <html>
-    <header><title>SlashDot</title></header>
+    <head>
+       <meta charset="utf-8">    <header><title>SlashDot</title></header>
+    </head>
     <script src="jquery-3.3.1.min.js"></script>    
     <script src="slashdot.js"></script>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="icon" type="image/png" href="icon.png">
     <body>
     <h1>SlashDot (Linux Exclusive)</h1>
-    <div class="instrucciones"></div>  
     <h2 class='record'><span>Record: </span><span id="recordVal">0</span></h2>
     <h2 class='puntos'><span>Puntos: </span><span id="puntosVal">0</span></h2>
-    <textarea id="slashdot" name="text" rows="14" cols="100" wrap="soft"></textarea>
-    <div class="debug"></div>
+    <textarea id="slashdot" name="text" rows="14" cols="80" wrap="soft"></textarea>
+    <table style="float: right; width: 40em">
+        <tr>
+            <th>Puesto</th>
+            <th>Nombre</th>
+            <th>Record</th>
+        </tr>
+        <tr>
+            <td>#1</td>
+            <td>Fede</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>#2</td>
+            <td>Flor</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>#3</td>
+            <td>Nico</td>
+            <td>6</td>
+        </tr>
+      </table>
+    <h3 class='instrucciones'>Mantener apretado el punto. Tocar shift. El resto es intuición</h3>
     </body>
 </html>
     

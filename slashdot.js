@@ -7,11 +7,8 @@ var nivel = 0;
 $(document).ready(function(){     
     $("#slashdot").val('');
     
-    function jugar(){    
-        var input = $("#slashdot").val();
-        if (!AVAILABLECHARS.test(input)){
-            perder();
-        }    
+    function jugar(){   
+        var input = $("#slashdot").val();   
         var inputPicos = input.replace(/\./g,'')
         var inputSumatoria = inputPicos.length;
         if (inputSumatoria == sumatoria) {
@@ -53,17 +50,25 @@ $(document).ready(function(){
         $("#slashdot").val(input.replace(/\:/g, ">")); 
     }
 
+    function validarCaracteres(){
+        var input = $("#slashdot").val();
+        if (!AVAILABLECHARS.test(input)){
+            perder();
+        } 
+    }
+
     $(document).bind("keydown", function (event) {
         if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
             jugar()
         }
     });
 
-    $(document).bind("keyup", function (event) {
+    $('#slashdot').bind('input propertychange', function() {
+        latamToEng()
+        validarCaracteres()
+    });
 
-        if (event.shiftKey) { 
-            latamToEng() // Si usa layout argentino, el shift . cambia de : a >
-        }
+    $(document).bind("keyup", function (event) {
         if (event.keyCode == 190 && !event.shiftKey) { 
             perder()
         }
