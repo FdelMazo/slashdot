@@ -1,29 +1,46 @@
+header, footer {
+    text-align: center;
+}
+
 body {
-   
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
-table  {
-    border: solid black 1px; 
-    border-collapse: collapse;
-    text-align: left;
+var {
+    font-style:normal;
 }
 
-td, th {
-    border: solid black 1px; 
+.record-puntos {
+    display: inline-block; 
 }
 
-.instrucciones {
-
-}
-
-.puntos {
+#puntos {
     color: green;
 }
 
-.slashdot {
-
+#record {
+    color: blue;
 }
 
-.record {
-    color: blue;
+hr { 
+    margin: 50px 100px ;
+}
+#slashdot {
+    height: 40%;
+    width: 50%;
+}
+
+table  {
+    margin: 0 auto;
+    border: solid black 1px; 
+    border-collapse: collapse;
+    text-align: left;
+    word-wrap: normal;
+}
+
+td, th {
+    width: 10%;
+    border: solid black 1px; 
 }
