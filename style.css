@@ -3,13 +3,14 @@ header, footer {
 }
 
 html {
-    background: indigo;
-     /* Fondo celeste con ..>.. repetidos */
+    background: paleturquoise;
+    background-image: url("characters.png");
+    background-repeat: repeat;
 }
 
 body {
-    background: lightblue;
-     /* Alguna otra matiz de azul*/
+    background: lightcyan ;
+    border: solid black 5px ;
     width: 70%;
     margin: 10 auto auto;
     margin-bottom: 30;
@@ -23,6 +24,7 @@ var {
 
 .record-puntos {
     display: inline-block; 
+    margin: 0 20px;
 }
 
 #puntos {
@@ -37,15 +39,21 @@ hr {
     margin: 50px 100px ;
 }
 #slashdot {
-    background: lightslategray; 
-    /*stripes*/
+    border: double black 5px ;
+    /*background: repeating-linear-gradient(
+        135deg,
+        white,
+        white 5px,
+        lightblue 5px,
+        lightblue 10px
+      );*/
     height: 40%;
     width: 80%;
 }
 
 table  {
     margin: 0 auto;
-    border: solid black 1px; 
+    border: double black 5px ;
     border-collapse: collapse;
     text-align: left;
     word-wrap: normal;
