@@ -32,6 +32,8 @@ $(document).ready(function(){
         nivel = 0
         sumatoriaAnt = 0
         $("#slashdot").val('');
+        $("#puntosVal").text(0);   
+
     }
 
     function incrementar(){
