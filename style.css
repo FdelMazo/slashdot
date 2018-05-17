@@ -44,7 +44,10 @@ var {
 #record {
     color: darkblue;
     font-size: 30px;
+}
 
+#count {
+  font-family: 'GameFont';
 }
 
 hr {
