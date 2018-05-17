@@ -1,18 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+@font-face {
+  font-family: 'GameFont';
+  src: URL('zig_____.ttf') format('truetype');
+  font-weight: bold;
+}
+
 header, footer {
     text-align: center;
+    font-family: 'GameFont';
 }
 
 html {
-    background: paleturquoise;
-    background-image: url("characters.png");
+    background-image: url("assault.png");
     background-repeat: repeat;
 }
 
 body {
-    background: lightcyan ;
-    border: solid black 5px ;
+    background: #778beb ;
+    border: solid #d2dae2 5px ;
     width: 70%;
     margin: 10 auto auto;
     margin-bottom: 30;
@@ -26,24 +32,27 @@ var {
 }
 
 .record-puntos {
-    display: inline-block; 
+    display: inline-block;
     margin: 0 20px;
 }
 
 #puntos {
     color: darkgreen;
+    font-size: 30px;
 }
 
 #record {
     color: darkblue;
+    font-size: 30px;
+
 }
 
-hr { 
+hr {
     margin: 50px 100px ;
 }
 #slashdot {
     padding: 25px;
-    border: double black 5px ;
+    border: solid black 5px ;
     font-size: 14px;
     font-weight: bold;
     /*background: repeating-linear-gradient(
@@ -59,21 +68,21 @@ hr {
 
 table  {
     margin: 0 auto;
-    border: double black 5px ;
+    border: solid black 4px ;
     border-collapse: collapse;
     text-align: center;
-    background: repeating-linear-gradient(
-        135deg,
-        white,
-        white 10px,
-        paleturquoise 10px,
-        paleturquoise 20px
-    );
+    background:white;
     word-wrap: normal;
+}
+
+.tableTitle{
+  background: #ff3f34;
+  text-transform: uppercase;
+  font-size: 15px;
 }
 
 td, th {
     padding: 5px;
     width: 10%;
-    border: solid black 1px; 
+    border: solid black 1px;
 }
