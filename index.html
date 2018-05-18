@@ -3,6 +3,7 @@
            <meta charset="utf-8">
            <script src="jquery-3.3.1.min.js"></script>
            <script src="slashdot.js"></script>
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
            <link rel="stylesheet" href="style.css">
            <link rel="icon" type="image/png" href="icon.png">
         </head>
@@ -27,28 +28,33 @@
               <h2 id ='count'>0</h2>
             </div>
 
-            <table>
-                <tr>
-                    <th class = 'tableTitle'>Puesto</th>
-                    <th class = 'tableTitle'>Nombre</th>
-                    <th class = 'tableTitle'>Record</th>
+            <table class="table" style = "width: 50%">
+              <thead>
+                <tr class="bg-danger">
+                  <th scope="col" style = "width: 5.66%" >PUESTO</th>
+                  <th scope="col" style = "width: 5.66%" >NOMBRE</th>
+                  <th scope="col" style = "width: 5.66%" >RECORD</th>
                 </tr>
-                <tr>
-                    <td>#1</td>
-                    <td>Fede</td>
-                    <td>13</td>
+              </thead>
+              <tbody>
+                <tr class="table-light">
+                  <th scope="row">#1</th>
+                  <td>Fede</td>
+                  <td>10</td>
                 </tr>
-                <tr>
-                    <td>#2</td>
-                    <td>Flor</td>
-                    <td>8</td>
+                <tr class="table-light">
+                  <th scope="row">#2</th>
+                  <td>Flor</td>
+                  <td>8</td>
                 </tr>
-                <tr>
-                    <td>#3</td>
-                    <td>Nico</td>
-                    <td>7</td>
+                <tr class="table-light" style = "width: 16.66%">
+                  <th scope="row">#3</th>
+                  <td>Nico</td>
+                  <td>6</td>
                 </tr>
+              </tbody>
             </table>
+
             <br>
             <footer>
                 <p>El creador es consciente de que no hay ningun 'slash' en el sitio. 'Angle Bracket Dot' no era pegadizo.</ph5>
