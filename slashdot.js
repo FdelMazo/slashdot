@@ -74,4 +74,8 @@ $(document).ready(function(){
         }
     });
 
+    $('#slashdot').bind('copy paste cut',function(e) {
+        e.preventDefault(); //previene de que puedan copiar, corta, pegar
+    });
+
 });
