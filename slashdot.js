@@ -39,26 +39,12 @@ $(document).ready(function(){
         });
     }
 
-    function postearRecord(record, fecha){
+    function postearRecord(record){
         
-        var iniciales = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tus iniciales");
-        while (!iniciales || iniciales.length > 4){
-            iniciales = prompt("Por favor ingresa hasta 4 letras")
-        } 
-        
-        $.ajax({
-            url: DATOSAPI,
-            method: 'POST',
-            data: {
-                'iniciales': iniciales.toUpperCase(),
-                'puntos': record,
-                'fecha': fecha
-            },
-            success: function(data) {
-                alert()
-                updateTable()
-            }
-        })
+        var iniciales = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
+        if (!iniciales) return      
+        /*Aca se tiene que autollenar un google form, con los puntos escondidos*/
+
     }
 
     function jugar(){
@@ -82,7 +68,7 @@ $(document).ready(function(){
         }
 
         if (recordAct > $('#puntos3').html()){
-            postearRecord(recordAct.toString(), new Date().toString())
+            postearRecord(recordAct.toString())
         }
         sumatoria = 0
         nivel = 0
