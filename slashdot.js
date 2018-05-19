@@ -13,7 +13,6 @@ $(document).ready(function(){
         var inputSumatoria = inputPicos.length;
         if (inputSumatoria == sumatoria) {
             incrementar();
-            document.getElementById('count').innerHTML = nivel-1;
         }
         else if (inputSumatoria == sumatoriaAnt) return;
         else  {
@@ -32,8 +31,6 @@ $(document).ready(function(){
         sumatoriaAnt = 0
         $("#slashdot").val('');
         $("#puntosVal").text(0);
-        document.getElementById('count').innerHTML = 0;
-
     }
 
     function incrementar(){

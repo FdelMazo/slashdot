@@ -1,91 +1,51 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
-@font-face {
-  font-family: 'GameFont';
-  src: URL('zig_____.ttf') format('truetype');
-  font-weight: bold;
-}
-
-header, footer {
-    text-align: center;
-    font-family: 'GameFont';
-}
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 html {
-    background-image: url("imagenes/assault.png");
-    background-repeat: repeat;
+    background: silver;
+}
+
+div {
+    margin: 0.5em;
 }
 
 body {
-    background: #778beb ;
-    border: solid #d2dae2 5px ;
+    background: cornflowerblue ;
+    font-family: "Press Start 2P";
+    border: solid black ;
     width: 70%;
     margin: 10 auto auto;
-    margin-bottom: 30;
     text-align: center;
-    padding: 30px;
-    font-family: "Source Sans Pro";
+    padding: 1em 3em;
 }
 
 var {
     font-style:normal;
 }
 
-.record-puntos {
-    display: inline-block;
-    margin: 0 20px;
+p, a {
+    font-size: x-small;
 }
 
-#puntos {
+#puntos{
     color: darkgreen;
-    font-size: 30px;
+    font-size: x-large;
 }
 
 #record {
     color: darkblue;
-    font-size: 30px;
 }
 
-#count {
-  font-family: 'GameFont';
-}
-
-hr {
-    margin: 50px 100px ;
-}
 #slashdot {
-    padding: 25px;
-    border: solid black 5px ;
-    font-size: 14px;
+    padding: 2em;
+    border: solid black ;
     font-weight: bold;
-    /*background: repeating-linear-gradient(
-        135deg,
-        white,
-        white 5px,
-        paleturquoise 5px,
-        paleturquoise 10px
-      );*/
     height: 40%;
     width: 80%;
+    overflow: hidden; /*Evitar scrollbar*/
 }
 
 table  {
-    margin: 0 auto;
-    border: solid black 4px ;
-    border-collapse: collapse;
+    border: solid black;
     text-align: center;
-    background:white;
-    word-wrap: normal;
-}
-
-.tableTitle{
-  background: #ff3f34;
-  text-transform: uppercase;
-  font-size: 15px;
-}
-
-td, th {
-    padding: 5px;
-    width: 10%;
-    border: solid black 1px;
+    font-size: small;
 }
