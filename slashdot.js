@@ -8,7 +8,6 @@ var DATOSAPI = "https://sheetsu.com/apis/v1.0su/8c85cddd285f"
 
 $(document).ready(function(){
     $("#slashdot").val('');
-    $('#inputRecord').hide()
     updateTable();
 
     function updateTable(){
@@ -22,13 +21,12 @@ $(document).ready(function(){
     };
 
     function populateTable(data){
-       
         var top3 = data.slice(0,3)
         var tbody = $("#Top3")
         var count = 1
         top3.forEach(jugador => {
-            var iniciales = jugador.inicialesSorted
-            var puntos = jugador.puntosSorted
+            var iniciales = jugador.nombre
+            var puntos = jugador.puntos
             var row = "<tr class='table-light'>" + 
                 "<td> #" + count + "</td>" +
                 "<td>" + iniciales + "</td>" +
@@ -40,11 +38,13 @@ $(document).ready(function(){
     }
 
     function postearRecord(record){
-        
-        var iniciales = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
-        if (!iniciales) return      
-        /*Aca se tiene que autollenar un google form, con los puntos escondidos*/
-
+        var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
+        if (!nombre) return
+        var form = $("<form id='formRecord' type='hidden' action='https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujoEOmmPAQwVPCD_Q4' " +
+        "onsubmit='return window.submitGoogleForm(this);'></form>");
+        form.append("<input name='entry.1390684760' value=" + nombre + ">");
+        form.append("<input name='entry.227954217' value=" + record + ">");
+        form.submit()
     }
 
     function jugar(){
@@ -66,15 +66,15 @@ $(document).ready(function(){
         if (recordAct > recordAnt){
             $("#recordVal").text(recordAct)
         }
-
-        if (recordAct > $('#puntos3').html()){
-            postearRecord(recordAct.toString())
-        }
         sumatoria = 0
         nivel = 0
         sumatoriaAnt = 0
         $("#slashdot").val('')
         $("#puntosVal").text(0)
+        
+        if (recordAct > $('#puntos3').html()){
+            postearRecord(recordAct.toString())
+        }
     }
 
     function incrementar(){
