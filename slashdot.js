@@ -114,7 +114,7 @@ $(document).ready(function(){
     });
 
     $('#slashdot').bind("keyup", function (event) {
-        if (event.keyCode == 190 && !event.shiftKey) {
+        if (event.keyCode == 190) {
             perder()
         }
     });
