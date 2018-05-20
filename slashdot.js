@@ -4,7 +4,7 @@ var sumatoria = 0
 var sumatoriaAnt = 0
 var nivel = 0
 
-var DATOSAPI = "https://sheetsu.com/apis/v1.0su/8c85cddd285f" 
+var DATOSAPI = "https://sheetsu.com/apis/v1.0su/5fa3298102ba" 
 
 $(document).ready(function(){
     $("#slashdot").val('');
