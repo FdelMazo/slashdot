@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 :root {
-    --color-primario: orchid;
-    --color-secundario: papayawhip;
-    --color-terciario: coral;
-    --color-bordes: firebrick;
-    --color-record: darkblue;
-    --color-puntos: darkgreen;
+    --color-primario: #82589F;
+    --color-secundario: #ced6e0;
+    --color-terciario: #d35400;
+    --color-bordes: #2f3542;
+    --color-record: #3498db;
+    --color-puntos: #2ecc71;
 }
 
 html {
