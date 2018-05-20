@@ -11,6 +11,8 @@ $(document).ready(function(){
     updateTable();
 
     function updateTable(){
+        var tbody = $("#Top3")
+        tbody.empty()
         $.ajax({
             url: DATOSAPI,
             method: 'GET',
@@ -36,7 +38,7 @@ $(document).ready(function(){
             count++
         });
     }
-
+    
     function postearRecord(record){
         var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
         if (!nombre) return
@@ -45,6 +47,7 @@ $(document).ready(function(){
         form.append("<input name='entry.1390684760' value=" + nombre + ">");
         form.append("<input name='entry.227954217' value=" + record + ">");
         form.submit()
+        updateTableWrapper()
     }
 
     function jugar(){
@@ -105,6 +108,9 @@ $(document).ready(function(){
         if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
             jugar()
         }
+        if(event.keyCode == 8) {
+            perder();
+        }
     });
 
     $('#slashdot').bind("keyup", function (event) {
@@ -122,4 +128,13 @@ $(document).ready(function(){
         e.preventDefault()
     });
 
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function updateTableWrapper(){
+        await sleep(10000)
+        updateTable()
+    }
 });
