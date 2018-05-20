@@ -5,7 +5,7 @@ var sumatoriaAnt = 0
 var nivel = 0
 
 /*Comentar en modo dev para evitar quemar los 200 requests mensuales gratis de Sheetsu*/
-var DATOSAPI = "https://sheetsu.com/apis/v1.0su/5fa3298102ba" 
+var DATOSAPI = "https://sheetsu.com/apis/v1.0su/699e63e5f64f" 
 
 $(document).ready(function(){
     $("#slashdot").val('');
