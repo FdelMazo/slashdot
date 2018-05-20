@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 :root {
-    --color-primario: #82589F;
-    --color-secundario: #ced6e0;
-    --color-terciario: #d35400;
-    --color-bordes: #2f3542;
-    --color-record: #3498db;
+    --color-primario: #8e44ad;
+    --color-secundario: #ecf0f1;
+    --color-terciario: #e67e22;
+    --color-bordes: black;
+    --color-record: #ecf0f1;
     --color-puntos: #2ecc71;
+    --color-font: black;
 }
 
 html {
@@ -20,6 +21,7 @@ div {
 body {
     background: var(--color-primario);
     font-family: "Press Start 2P";
+    color:var(--color-font);
     border: solid 0.25em var(--color-bordes) ;
     width: 70%;
     margin: 10 auto auto;
@@ -36,12 +38,12 @@ p, a {
 }
 
 #puntos{
-    color: var(--color-record);
+    color: var(--color-puntos);
     font-size: xx-large;
 }
 
 #record {
-    color: var(--color-puntos);
+    color: var(--color-record);
 }
 
 #slashdot {
