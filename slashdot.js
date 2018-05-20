@@ -27,11 +27,11 @@ $(document).ready(function(){
         var tbody = $("#Top3")
         var count = 1
         top3.forEach(jugador => {
-            var iniciales = jugador.nombre
-            var puntos = jugador.puntos
+            var nombre = jugador.Nombre
+            var puntos = jugador.Puntos
             var row = "<tr class='table-light'>" + 
                 "<td> #" + count + "</td>" +
-                "<td>" + iniciales + "</td>" +
+                "<td>" + nombre + "</td>" +
                 "<td id='puntos" + count + "'>" + puntos + "</td>" +
                 "</tr>";
             tbody.append(row)
