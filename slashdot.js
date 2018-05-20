@@ -11,8 +11,6 @@ $(document).ready(function(){
     updateTable();
 
     function updateTable(){
-        var tbody = $("#Top3")
-        tbody.empty()
         $.ajax({
             url: DATOSAPI,
             method: 'GET',
@@ -23,18 +21,15 @@ $(document).ready(function(){
     };
 
     function populateTable(data){
-        var top3 = data.slice(0,3)
-        var tbody = $("#Top3")
+        var tbody = $("#TablaRecords")
         var count = 1
-        top3.forEach(jugador => {
+        data.forEach(jugador => {
             var nombre = jugador.Nombre
             var puntos = jugador.Puntos
-            var row = "<tr class='table-light'>" + 
-                "<td> #" + count + "</td>" +
-                "<td>" + nombre + "</td>" +
-                "<td id='puntos" + count + "'>" + puntos + "</td>" +
-                "</tr>";
-            tbody.append(row)
+            var nombreAct = $('#nombre'+count)
+            var puntosAct = $('#puntos'+count)
+            nombreAct.text(nombre)
+            puntosAct.text(puntos)
             count++
         });
     }

@@ -1,6 +1,7 @@
 <html>
   <head>
       <meta charset="utf-8">
+      <meta name="author" content="FdelMazo">
       <script src="jquery-3.3.1.min.js"></script>
       <script src="slashdot.js"></script>
       <script src="google-form.js"></script>
@@ -8,7 +9,9 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
       <link rel="stylesheet" href="style.css">
       <link rel="icon" type="image/png" href="icon.png">
+
       <title class='title'>SlashDot</title>
+      <meta name='description' content='Juego web para el teclado'>
   </head>
 
   <body>
@@ -18,6 +21,9 @@
     </header>
 
     <div id='puntos'><var id="puntosVal"> 0 </var></div>
+
+    <p>Mantener apretado el punto. Tocar shift. El resto es intuición.</p>
+    <p>...>......>>.......>>>......>>>>......>>>>>......</p>
 
     <div><textarea autofocus id="slashdot"></textarea></div>
 
@@ -32,14 +38,28 @@
             <th scope="col" >RECORD</th>
           </tr>
         </thead>
-        <tbody id = "Top3">
-          <!-- Llenar tabla con javascript  -->
-        </tbody>
+        <tbody id = "TablaRecords">
+          <tr id='Top1'>
+            <td>#1</td>
+            <td id="nombre1"></td>
+            <td id="puntos1"></td>
+          </tr>
+          <tr id='Top2'>
+            <td>#2</td>
+            <td id="nombre2"></td>
+            <td id="puntos2"></td>
+          </tr>
+          <tr id='Top3'>
+            <td>#3</td>
+            <td id="nombre3"></td>
+            <td id="puntos3"></td>
+          </tr>
+          </tbody>
       </table>
     </div>
     <div>
     <footer>
-      <p>El creador es consciente de que no hay ningun 'slash' en el sitio. 'Angle Bracket Dot' no era pegadizo.</ph5>
+      <p>El creador es consciente de que no hay ningun 'slash' en el sitio. 'Angle Bracket Dot' no era pegadizo.</p>
       <div id="link-github">
         <a href="https://github.com/fdelmazo/slashdot">
         <span><svg viewBox="0 0 16 16" width="2.5em" height="2.5em">
