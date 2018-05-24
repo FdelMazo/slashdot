@@ -4,12 +4,22 @@ var sumatoria = 0
 var sumatoriaAnt = 0
 var nivel = 0
 
-/*Comentar en modo dev para evitar quemar los 200 requests mensuales gratis de Sheetsu*/
-var DATOSAPI = "https://sheetsu.com/apis/v1.0su/699e63e5f64f" 
+/* var DATOSAPI = "https://sheetsu.com/apis/v1.0su/699e63e5f64f"  */
+var DATOSAPI = null  // Modo Dev
 
 $(document).ready(function(){
     $("#slashdot").val('');
     updateTable();
+    checkOS();
+    
+    function checkOS() {
+        if (!isLinux()){
+            var input = $("#slashdot")
+            input.prop('disabled', true);
+            input.val('Este juego solo esta disponible en Linux \n\nPerdón :(')
+
+        }
+    }
 
     function updateTable(){
         $.ajax({
@@ -133,4 +143,14 @@ $(document).ready(function(){
         await sleep(10000)
         updateTable()
     }
+
+    function isLinux() {
+        var userAgent = window.navigator.userAgent,
+            platform = window.navigator.platform,
+            os = null;
+        if (!os && /Linux/.test(platform)) {
+           return true;
+        }
+        return false;
+      }
 });
