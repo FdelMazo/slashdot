@@ -9,6 +9,6 @@
 
 * Otra Sheet del mismo Spreadsheet agarra el Top 3 de la Sheet de todas las respuestas.
 
-* Haciendo uso de la versión gratuita de [sheetsu](http://sheetsu.com/) se puede leer la Sheet del top como si fuese una RESTful API (200 lecturas por mes).
+* Los datos del leaderboard se obtienen mostrando la spreadsheet como una JsonAPI. Esto se consigue cuando publicas el spreadhseet (File -> Publish to the Web) y despues usando d link: "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json"
 
-* Después de 10 segundos, se actualiza la tabla del sitio.
+* Después de 10 segundos de cambiado el record, se actualiza la tabla del sitio.

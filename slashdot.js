@@ -4,20 +4,19 @@ var sumatoria = 0
 var sumatoriaAnt = 0
 var nivel = 0
 
-/* var DATOSAPI = "https://sheetsu.com/apis/v1.0su/699e63e5f64f"  */
-var DATOSAPI = null  // Modo Dev
+var DATOSAPI = "https://spreadsheets.google.com/feeds/list/1EHx5zeOUugQLdqfljgS8-iUexkstF9RvMQZ09qUBpjk/od6/public/values?alt=json"
+var UPDATEDELAY = 5000 // Milisegundos que tarda en actualizar la tabla una vez logrado un record
 
 $(document).ready(function(){
     $("#slashdot").val('');
     updateTable();
     checkOS();
-    
+
     function checkOS() {
         if (!isLinux()){
             var input = $("#slashdot")
             input.prop('disabled', true);
-            input.val('Este juego solo esta disponible en Linux \n\nPerdón :(')
-
+            input.val('Este juego solo esta disponible en Linux. \n\nPerdón :(')
         }
     }
 
@@ -31,12 +30,13 @@ $(document).ready(function(){
         })
     };
 
-    function populateTable(data){
+    function populateTable(api){
+        var data = api.feed.entry
         var tbody = $("#TablaRecords")
         var count = 1
         data.forEach(jugador => {
-            var nombre = jugador.Nombre
-            var puntos = jugador.Puntos
+            var nombre = jugador.title.$t
+            var puntos = jugador.content.$t
             var nombreAct = $('#nombre'+count)
             var puntosAct = $('#puntos'+count)
             nombreAct.text(nombre)
@@ -140,16 +140,29 @@ $(document).ready(function(){
     }
 
     async function updateTableWrapper(){
-        await sleep(10000)
+        await sleep(UPDATEDELAY)
         updateTable()
     }
 
     function isLinux() {
         var userAgent = window.navigator.userAgent,
             platform = window.navigator.platform,
+            macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
             os = null;
-        if (!os && /Linux/.test(platform)) {
-           return true;
+      
+        if (macosPlatforms.indexOf(platform) !== -1) {
+          os = 'Mac OS';
+        } else if (iosPlatforms.indexOf(platform) !== -1) {
+          os = 'iOS';
+        } else if (windowsPlatforms.indexOf(platform) !== -1) {
+          os = 'Windows';
+        } else if (/Android/.test(userAgent)) {
+          os = 'Android';
+        } else if (!os && /Linux/.test(platform)) {
+          os = 'Linux';
+          return true;
         }
         return false;
       }
