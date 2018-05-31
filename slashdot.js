@@ -35,8 +35,8 @@ $(document).ready(function(){
         var tbody = $("#TablaRecords")
         var count = 1
         data.forEach(jugador => {
-            var nombre = jugador.title.$t
-            var puntos = jugador.content.$t
+            var nombre = jugador.gsx$nombre.$t
+            var puntos = jugador.gsx$puntos.$t
             var nombreAct = $('#nombre'+count)
             var puntosAct = $('#puntos'+count)
             nombreAct.text(nombre)
