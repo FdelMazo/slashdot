@@ -3,11 +3,13 @@ var FORMAPI = 'https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujo
 var UPDATEDELAY = 5000 // Milisegundos que tarda en actualizar la tabla una vez logrado un record
 var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
 var NIVEL = 0
+var TUTORIAL = true
 var OS = getOS()
 
 $(document).ready(function(){
     clearGame()
     updateTable()
+    writeInstructions()
         
     $('#slashdot').bind('input propertychange', function() {
         validarCaracteres()
@@ -35,11 +37,33 @@ $(document).ready(function(){
     }
 })
 
+function writeInstructions() {
+    if (!TUTORIAL) return
+    var instrucciones = $("#instrucciones")
+    if (OS=='Linux'){
+        if (NIVEL == 0) instrucciones.text('Mantené apretado el punto')
+        else if (NIVEL == 1) instrucciones.text('Tocá una vez shift')
+        else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift')
+        else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift')
+        else if (NIVEL == 4) {
+            instrucciones.text('Bienvenido al Slashdot!')
+            TUTORIAL = false
+        }
+
+    }
+    else {
+
+    }
+}
+
 function jugar(){
     var input = $("#slashdot").val()
     var inputPicos = input.replace(/\./g,'')
     var inputSumatoria = inputPicos.length
-    if (inputSumatoria == getSum(NIVEL)) incrementar()
+    if (inputSumatoria == getSum(NIVEL)) {
+        incrementar()
+        writeInstructions()
+    }
     else if (inputSumatoria == getSum(NIVEL-1)) return
     else perder()
 }
@@ -57,6 +81,7 @@ function perder(){
     if (recordAct > $('#puntos3').html()){
         postearRecord(recordAct.toString())
     }
+    writeInstructions()
 }
 
 function incrementar(){
