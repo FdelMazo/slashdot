@@ -3,8 +3,12 @@ var FORMAPI = 'https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujo
 var UPDATEDELAY = 5000 // Milisegundos que tarda en actualizar la tabla una vez logrado un record
 var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
 var NIVEL = 0
+var SPEED = 40
 var TUTORIAL = true
 var OS = getOS()
+var FIRSTTIME = true
+var CARACTER = '.'
+
 
 $(document).ready(function(){
     clearGame()
@@ -20,9 +24,6 @@ $(document).ready(function(){
     })
 
     $('#slashdot').bind("keydown", function (event) {
-        if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
-            jugar()
-        }
         if(event.keyCode == 8) { //8 == backspace
             perder()
         }
@@ -34,26 +35,72 @@ $(document).ready(function(){
                 perder()
             }
         })
+        $('#slashdot').bind("keydown", function (event) {
+            if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
+                jugar()
+            }
+        })
+    }
+    else {
+        $('#slashdot').bind("keydown", function (event) {
+            if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
+                jugarWindows(FIRSTTIME)
+            }
+            if (event.keyCode == 16) {
+                changeCaracter()
+            }
+        })
+        $('#slashdot').bind("keyup", function (event) {
+            if (event.keyCode == 16) {
+                changeCaracter()
+                jugar()
+            }
+        })    
     }
 })
 
 function writeInstructions() {
     if (!TUTORIAL) return
     var instrucciones = $("#instrucciones")
-    if (OS=='Linux'){
-        if (NIVEL == 0) instrucciones.text('Mantené apretado el punto')
-        else if (NIVEL == 1) instrucciones.text('Tocá una vez shift')
-        else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift')
-        else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift')
-        else if (NIVEL == 4) {
-            instrucciones.text('Bienvenido al Slashdot!')
-            TUTORIAL = false
-        }
-
+    if (NIVEL == 0){ 
+        if (OS=='Linux') instrucciones.text('Mantené apretado el punto')
+        else instrucciones.text('Mantené apretado el punto')
     }
-    else {
-
+    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift')
+    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift')
+    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift')
+    else if (NIVEL == 4) {
+        instrucciones.text('Bienvenido al SlashDot!')
+        TUTORIAL = false
     }
+}
+
+function changeCaracter(){
+    if (CARACTER == '.') CARACTER='>'
+    else if (CARACTER == '>') CARACTER='.'
+}
+
+function _agregarCaracter(){
+    var input = $("#slashdot").val()
+    input+=CARACTER
+    $("#slashdot").val(input)
+}
+
+function agregarCaracteres() {
+    window.setInterval(_agregarCaracter, SPEED)
+}
+
+function jugarWindows(firsttime){
+    if(firsttime) {
+        agregarCaracteres()
+        firsttime = false
+        jugar()
+    }
+}
+
+
+function agregarPuntos() {
+    window.setInterval(_agregarPuntos, 50)
 }
 
 function jugar(){
