@@ -1,12 +1,9 @@
-var sumatoria = 0
-var sumatoriaAnt = 0
-var NIVEL = 0
-var OS = getOS()
-
 var DATOSAPI = "https://spreadsheets.google.com/feeds/list/1EHx5zeOUugQLdqfljgS8-iUexkstF9RvMQZ09qUBpjk/od6/public/values?alt=json"
 var FORMAPI = 'https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujoEOmmPAQwVPCD_Q4'
 var UPDATEDELAY = 5000 // Milisegundos que tarda en actualizar la tabla una vez logrado un record
 var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
+var NIVEL = 0
+var OS = getOS()
 
 $(document).ready(function(){
     clearGame()
@@ -86,8 +83,8 @@ function jugar(){
     var input = $("#slashdot").val()
     var inputPicos = input.replace(/\./g,'')
     var inputSumatoria = inputPicos.length
-    if (inputSumatoria == sumatoria) incrementar()
-    else if (inputSumatoria == sumatoriaAnt) return
+    if (inputSumatoria == getSum(NIVEL)) incrementar()
+    else if (inputSumatoria == getSum(NIVEL-1)) return
     else perder()
 }
 
@@ -97,9 +94,7 @@ function perder(){
     if (recordAct > recordAnt){
         $("#recordVal").text(recordAct)
     }
-    sumatoria = 0
     NIVEL = 0
-    sumatoriaAnt = 0
     clearGame()
     $("#puntosVal").text(0)
     
@@ -109,14 +104,7 @@ function perder(){
 }
 
 function incrementar(){
-    if (sumatoria == 0){
-        sumatoria = 1
-    }
-    else {
-        $("#puntosVal").text(NIVEL)
-        sumatoriaAnt = sumatoria
-        sumatoria = sumatoria + (NIVEL+1)
-    }
+    $("#puntosVal").text(NIVEL)
     NIVEL++
 }
 
@@ -157,4 +145,13 @@ function getOS() {
       os = 'Linux'
     }
     return os
-  }
+}
+
+function getSum(x){
+    if (x == -1) return 0
+    var sum = 0
+    for(i = 0; i<=x;i++){
+        sum+=i
+    }
+    return sum
+}
