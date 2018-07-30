@@ -26,6 +26,7 @@ body {
     margin: 10 auto auto;
     text-align: center;
     padding: 1em 3em;
+    word-wrap: break-word;
 }
 
 var {

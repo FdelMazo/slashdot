@@ -8,20 +8,15 @@ var OS = getOS()
 $(document).ready(function(){
     clearGame()
     updateTable()
-    keyBinds()
         
     $('#slashdot').bind('input propertychange', function() {
-        latamToEng()
         validarCaracteres()
     })
     
     $('#slashdot').bind('copy paste cut',function(e) {
         e.preventDefault()
     })
-    
-})
 
-function keyBinds(){
     $('#slashdot').bind("keydown", function (event) {
         if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
             jugar()
@@ -38,46 +33,7 @@ function keyBinds(){
             }
         })
     }
-}
-
-function clearGame() {
-    $("#slashdot").val('')
-}
-
-function updateTable(){
-    $.ajax({
-        url: DATOSAPI,
-        method: 'GET',
-        success: function(data) {
-            populateTable(data)
-        }
-    })
-}
-
-function populateTable(api){
-    var data = api.feed.entry
-    var tbody = $("#TablaRecords")
-    var count = 1
-    data.forEach(jugador => {
-        var nombre = jugador.gsx$nombre.$t
-        var puntos = jugador.gsx$puntos.$t
-        var nombreAct = $('#nombre'+count)
-        var puntosAct = $('#puntos'+count)
-        nombreAct.text(nombre)
-        puntosAct.text(puntos)
-        count++
-    })
-}
-
-function postearRecord(record){
-    var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre")
-    if (!nombre) return
-    var form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this)'></form>")
-    form.append("<input name='entry.1390684760' value=" + nombre + ">")
-    form.append("<input name='entry.227954217' value=" + record + ">")
-    form.submit()
-    updateTableWrapper()
-}
+})
 
 function jugar(){
     var input = $("#slashdot").val()
@@ -108,16 +64,24 @@ function incrementar(){
     NIVEL++
 }
 
-function latamToEng(){
-    var input = $("#slashdot").val()
-    $("#slashdot").val(input.replace(/\:/g, ">"))
-}
-
 function validarCaracteres(){
     var input = $("#slashdot").val()
+    $("#slashdot").val(input.replace(/\:/g, ">"))
     if (!AVAILABLECHARS.test(input)){
         perder()
     }
+}
+
+
+//// TABLA DE RECORDS
+function postearRecord(record){
+    var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre")
+    if (!nombre) return
+    var form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this)'></form>")
+    form.append("<input name='entry.1390684760' value=" + nombre + ">")
+    form.append("<input name='entry.227954217' value=" + record + ">")
+    form.submit()
+    updateTableWrapper()
 }
 
 async function updateTableWrapper(){
@@ -125,6 +89,31 @@ async function updateTableWrapper(){
     updateTable()
 }
 
+function updateTable(){
+    $.ajax({
+        url: DATOSAPI,
+        method: 'GET',
+        success: function(data) {
+            populateTable(data)
+        }
+    })
+}
+
+function populateTable(api){
+    var data = api.feed.entry
+    var tbody = $("#TablaRecords")
+    var count = 1
+    data.forEach(jugador => {
+        var nombre = jugador.gsx$nombre.$t
+        var puntos = jugador.gsx$puntos.$t
+        var nombreAct = $('#nombre'+count)
+        var puntosAct = $('#puntos'+count)
+        nombreAct.text(nombre)
+        puntosAct.text(puntos)
+        count++
+    })
+}
+//// FUNCIONES AUXILIARES
 function getOS() {
     var userAgent = window.navigator.userAgent,
         platform = window.navigator.platform,
@@ -154,4 +143,8 @@ function getSum(x){
         sum+=i
     }
     return sum
+}
+
+function clearGame() {
+    $("#slashdot").val('')
 }
