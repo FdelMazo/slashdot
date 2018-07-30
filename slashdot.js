@@ -1,6 +1,6 @@
 var sumatoria = 0
 var sumatoriaAnt = 0
-var nivel = 0
+var NIVEL = 0
 var OS = getOS()
 
 var DATOSAPI = "https://spreadsheets.google.com/feeds/list/1EHx5zeOUugQLdqfljgS8-iUexkstF9RvMQZ09qUBpjk/od6/public/values?alt=json"
@@ -10,19 +10,19 @@ var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
 
 $(document).ready(function(){
     clearGame()
-    updateTable();
+    updateTable()
     keyBinds()
         
     $('#slashdot').bind('input propertychange', function() {
         latamToEng()
         validarCaracteres()
-    });
+    })
     
     $('#slashdot').bind('copy paste cut',function(e) {
         e.preventDefault()
-    });
+    })
     
-});
+})
 
 function keyBinds(){
     $('#slashdot').bind("keydown", function (event) {
@@ -30,21 +30,21 @@ function keyBinds(){
             jugar()
         }
         if(event.keyCode == 8) { //8 == backspace
-            perder();
+            perder()
         }
-    });
+    })
 
     if (OS == 'Linux'){
         $('#slashdot').bind("keyup", function (event) {
             if (event.keyCode == 190) {
                 perder()
             }
-        });
+        })
     }
 }
 
 function clearGame() {
-    $("#slashdot").val('');
+    $("#slashdot").val('')
 }
 
 function updateTable(){
@@ -55,7 +55,7 @@ function updateTable(){
             populateTable(data)
         }
     })
-};
+}
 
 function populateTable(api){
     var data = api.feed.entry
@@ -69,15 +69,15 @@ function populateTable(api){
         nombreAct.text(nombre)
         puntosAct.text(puntos)
         count++
-    });
+    })
 }
 
 function postearRecord(record){
-    var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
+    var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre")
     if (!nombre) return
-    var form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this);'></form>");
-    form.append("<input name='entry.1390684760' value=" + nombre + ">");
-    form.append("<input name='entry.227954217' value=" + record + ">");
+    var form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this)'></form>")
+    form.append("<input name='entry.1390684760' value=" + nombre + ">")
+    form.append("<input name='entry.227954217' value=" + record + ">")
     form.submit()
     updateTableWrapper()
 }
@@ -93,12 +93,12 @@ function jugar(){
 
 function perder(){
     var recordAnt = $("#recordVal").text()
-    var recordAct = nivel-1
+    var recordAct = NIVEL-1
     if (recordAct > recordAnt){
         $("#recordVal").text(recordAct)
     }
     sumatoria = 0
-    nivel = 0
+    NIVEL = 0
     sumatoriaAnt = 0
     clearGame()
     $("#puntosVal").text(0)
@@ -113,11 +113,11 @@ function incrementar(){
         sumatoria = 1
     }
     else {
-        $("#puntosVal").text(nivel)
+        $("#puntosVal").text(NIVEL)
         sumatoriaAnt = sumatoria
-        sumatoria = sumatoria + (nivel+1)
+        sumatoria = sumatoria + (NIVEL+1)
     }
-    nivel += 1
+    NIVEL++
 }
 
 function latamToEng(){
@@ -133,7 +133,7 @@ function validarCaracteres(){
 }
 
 async function updateTableWrapper(){
-    await new Promise(resolve => setTimeout(resolve, UPDATEDELAY));
+    await new Promise(resolve => setTimeout(resolve, UPDATEDELAY))
     updateTable()
 }
 
@@ -143,18 +143,18 @@ function getOS() {
         macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
         windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
         iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-        os = null;
+        os = null
   
     if (macosPlatforms.indexOf(platform) !== -1) {
-      os = 'Mac OS';
+      os = 'Mac OS'
     } else if (iosPlatforms.indexOf(platform) !== -1) {
-      os = 'iOS';
+      os = 'iOS'
     } else if (windowsPlatforms.indexOf(platform) !== -1) {
-      os = 'Windows';
+      os = 'Windows'
     } else if (/Android/.test(userAgent)) {
-      os = 'Android';
+      os = 'Android'
     } else if (!os && /Linux/.test(platform)) {
-      os = 'Linux';
+      os = 'Linux'
     }
-    return os;
+    return os
   }
