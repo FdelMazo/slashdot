@@ -1,32 +1,18 @@
-var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
-
 var sumatoria = 0
 var sumatoriaAnt = 0
 var nivel = 0
+var OS = getOS()
 
 var DATOSAPI = "https://spreadsheets.google.com/feeds/list/1EHx5zeOUugQLdqfljgS8-iUexkstF9RvMQZ09qUBpjk/od6/public/values?alt=json"
+var FORMAPI = 'https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujoEOmmPAQwVPCD_Q4'
 var UPDATEDELAY = 5000 // Milisegundos que tarda en actualizar la tabla una vez logrado un record
+var AVAILABLECHARS = new RegExp("^[\\.\>]*$")
 
 $(document).ready(function(){
     clearGame()
     updateTable();
-    checkOS();
-
-    $('#slashdot').bind("keydown", function (event) {
-        if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
-            jugar()
-        }
-        if(event.keyCode == 8) {
-            perder();
-        }
-    });
-    
-    $('#slashdot').bind("keyup", function (event) {
-        if (event.keyCode == 190) {
-            perder()
-        }
-    });
-    
+    keyBinds()
+        
     $('#slashdot').bind('input propertychange', function() {
         latamToEng()
         validarCaracteres()
@@ -38,16 +24,27 @@ $(document).ready(function(){
     
 });
 
-function clearGame() {
-    $("#slashdot").val('');
+function keyBinds(){
+    $('#slashdot').bind("keydown", function (event) {
+        if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
+            jugar()
+        }
+        if(event.keyCode == 8) { //8 == backspace
+            perder();
+        }
+    });
+
+    if (OS == 'Linux'){
+        $('#slashdot').bind("keyup", function (event) {
+            if (event.keyCode == 190) {
+                perder()
+            }
+        });
+    }
 }
 
-function checkOS() {
-    if (!isLinux()){
-        var input = $("#slashdot")
-        input.prop('disabled', true);
-        input.val('Este juego solo esta disponible en Linux. \n\nPerdón :(')
-    }
+function clearGame() {
+    $("#slashdot").val('');
 }
 
 function updateTable(){
@@ -78,8 +75,7 @@ function populateTable(api){
 function postearRecord(record){
     var nombre = prompt("Felicitaciones!! Entraste al Top 3 del mundo de Slashdot! \n Por favor escribi tu nombre");
     if (!nombre) return
-    var form = $("<form id='formRecord' type='hidden' action='https://docs.google.com/forms/u/0/d/1GXj0U24BYcwkG7CaGVJsLUbRFujoEOmmPAQwVPCD_Q4' " +
-    "onsubmit='return window.submitGoogleForm(this);'></form>");
+    var form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this);'></form>");
     form.append("<input name='entry.1390684760' value=" + nombre + ">");
     form.append("<input name='entry.227954217' value=" + record + ">");
     form.submit()
@@ -90,13 +86,9 @@ function jugar(){
     var input = $("#slashdot").val()
     var inputPicos = input.replace(/\./g,'')
     var inputSumatoria = inputPicos.length
-    if (inputSumatoria == sumatoria) {
-        incrementar()
-    }
+    if (inputSumatoria == sumatoria) incrementar()
     else if (inputSumatoria == sumatoriaAnt) return
-    else  {
-        perder()
-    }
+    else perder()
 }
 
 function perder(){
@@ -140,19 +132,12 @@ function validarCaracteres(){
     }
 }
 
-
-
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function updateTableWrapper(){
-    await sleep(UPDATEDELAY)
+    await new Promise(resolve => setTimeout(resolve, UPDATEDELAY));
     updateTable()
 }
 
-function isLinux() {
+function getOS() {
     var userAgent = window.navigator.userAgent,
         platform = window.navigator.platform,
         macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
@@ -170,7 +155,6 @@ function isLinux() {
       os = 'Android';
     } else if (!os && /Linux/.test(platform)) {
       os = 'Linux';
-      return true;
     }
-    return false;
+    return os;
   }
