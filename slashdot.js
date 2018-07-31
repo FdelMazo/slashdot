@@ -18,14 +18,14 @@ $(document).ready(function(){
     onkeydown = onkeyup = function(e){
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
-        if (map[190] && !map[16]) {
+        if (map[190] && (!map[16] && !map[17])) {
             changeCaracter('.')
             jugar()
         }
-        if (map[190] && map[16]) {
+        if (map[190] && (map[16]||map[17])) {
             changeCaracter('>')             
         }
-        if(!map[190] && !map[16]){
+        if(!map[190] && (!map[16] && !map[17])){
             perder()
         }
     }
@@ -59,9 +59,9 @@ function writeInstructions() {
     if (!TUTORIAL) return
     var instrucciones = $("#instrucciones")
     if (NIVEL == 0) instrucciones.text('Mantené apretado el punto. No lo sueltes!')
-    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift.')
-    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift.')
-    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift.')
+    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift (o ctrl).')
+    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift (o ctrl).')
+    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift (o ctrl)s.')
     else if (NIVEL == 4) {
         instrucciones.text('Seguí sumando puntos!!')
         TUTORIAL = false
