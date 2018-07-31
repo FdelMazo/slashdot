@@ -13,6 +13,7 @@ $(document).ready(function(){
     updateTable()
     writeInstructions()
     window.setInterval(agregarCaracter, SPEED)
+    $('#slashdot').val('Mantené apretado el punto.')
 
     $('#slashdot').bind('input propertychange', function() {
         validarCaracteres()
@@ -47,10 +48,10 @@ $(document).ready(function(){
 function writeInstructions() {
     if (!TUTORIAL) return
     var instrucciones = $("#instrucciones")
-    if (NIVEL == 0) instrucciones.text('Mantené apretado el punto')
-    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift')
-    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift')
-    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift')
+    if (NIVEL == 0) instrucciones.text('Bienvenido al SlashDot!')
+    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift.')
+    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift.')
+    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift.')
     else if (NIVEL == 4) {
         instrucciones.text('Bienvenido al SlashDot!')
         TUTORIAL = false
