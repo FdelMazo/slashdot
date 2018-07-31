@@ -49,6 +49,10 @@ $(document).ready(function(){
             perder()
         }
     })
+
+    $('#slashdot').blur(function() {
+        perder()
+    })
 })
 
 function writeInstructions() {
