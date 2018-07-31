@@ -13,6 +13,23 @@ $(document).ready(function(){
     updateTable()
     writeInstructions()
     window.setInterval(agregarCaracter, SPEED)
+
+    var map = {}; // You could also use an array
+    onkeydown = onkeyup = function(e){
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        if (map[190] && !map[16]) {
+            changeCaracter('.')
+            jugar()
+        }
+        if (map[190] && map[16]) {
+            changeCaracter('>')             
+        }
+        if(!map[190] && !map[16]){
+            perder()
+        }
+    }
+
     $('#slashdot').val('Mantené apretado el punto.')
 
     $('#slashdot').bind('input propertychange', function() {
@@ -28,21 +45,6 @@ $(document).ready(function(){
             perder()
         }
     })
-
-    $('#slashdot').bind("keydown", function (event) {
-        if (event.keyCode == 190 && !event.shiftKey) { //190 == punto (.)
-            changeCaracter('.')
-            jugar()
-        }
-        else if (event.keyCode == 190 && event.shiftKey) {
-            changeCaracter('>')             
-        }
-    })
-    $('#slashdot').bind("keyup", function (event) {
-        if (event.keyCode == 190 || event.keycode == 16) {
-            perder()
-        }
-    })    
 })
 
 function writeInstructions() {
