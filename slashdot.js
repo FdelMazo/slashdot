@@ -53,7 +53,7 @@ function writeInstructions() {
     else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift.')
     else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift.')
     else if (NIVEL == 4) {
-        instrucciones.text('Bienvenido al SlashDot!')
+        instrucciones.text('Seguí sumando puntos!!')
         TUTORIAL = false
     }
 }
