@@ -27,6 +27,7 @@ $(document).ready(function(){
         }
         if(!map[190] && (!map[16] && !map[17])){
             perder()
+            changeCaracter('')
         }
     }
 
@@ -77,7 +78,10 @@ function jugar(){
         writeInstructions()
     }
     else if (inputSumatoria == getSum(NIVEL-1)) return
-    else perder()
+    else {
+        perder()
+        changeCaracter('.')
+    }
 }
 
 function perder(){
@@ -94,7 +98,6 @@ function perder(){
         postearRecord(recordAct.toString())
     }
     writeInstructions()
-    changeCaracter('')
 }
 
 function subirNivel(){
