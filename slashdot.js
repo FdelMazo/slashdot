@@ -6,7 +6,7 @@ var TUTORIAL = true
 var AVAILABLECHARS = new RegExp("^[\\.\>]*$") // Solo '>' y '.', obviamente
 var CARACTER = ''
 var NIVEL = 0
-var SPEED = 20
+var SPEED = 30
 
 $(document).ready(function(){
     clearGame()
