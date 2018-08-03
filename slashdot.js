@@ -81,6 +81,7 @@ function jugar(){
     else {
         perder()
         changeCaracter('.')
+        jugar()
     }
 }
 
