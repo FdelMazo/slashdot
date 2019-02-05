@@ -35,8 +35,6 @@ $(document).ready(function(){
         $(this).height(0).height(this.scrollHeight);
     })
 
-    $('#slashdot').val('Mantené apretado el punto.')
-
     $('#slashdot').bind('input propertychange', function() {
         validarCaracteres()
     })
