@@ -48,7 +48,7 @@ p, a {
 
 #slashdot {
     background: var(--color-secundario);
-    padding: 2em;
+    padding: 2em 2em 0 2em;
     border: solid 0.25em var(--color-bordes) ;
     font-weight: bold;
     height: 40%;

@@ -18,22 +18,18 @@ $(document).ready(function(){
     onkeydown = onkeyup = function(e){
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
-        if (map[190] && (!map[16] && !map[17])) {
+        if (map[190] && !map[17]) {
             changeCaracter('.')
             jugar()
         }
-        if (map[190] && (map[16]||map[17])) {
+        if (map[190] && map[17]) {
             changeCaracter('>')             
         }
-        if(!map[190] && (!map[16] && !map[17])){
+        if(!map[190] && !map[17]){
             perder()
             changeCaracter('')
         }
     }
-
-    $('#slashdot').on( 'change keyup keydown paste cut', function (){
-        $(this).height(0).height(this.scrollHeight);
-    })
 
     $('#slashdot').bind('input propertychange', function() {
         validarCaracteres()
@@ -58,9 +54,9 @@ function writeInstructions() {
     if (!TUTORIAL) return
     var instrucciones = $("#instrucciones")
     if (NIVEL == 0) instrucciones.text('Mantené apretado el punto. No lo sueltes!')
-    else if (NIVEL == 1) instrucciones.text('Tocá una vez shift (o ctrl).')
-    else if (NIVEL == 2) instrucciones.text('Tocá pero un poquito más de tiempo shift (o ctrl).')
-    else if (NIVEL == 3) instrucciones.text('Tocá pero un poquito mááás de tiempo shift (o ctrl).')
+    else if (NIVEL == 1) instrucciones.text('Tocá solo una vez, lo más rápido que puedas, ctrl.')
+    else if (NIVEL == 2) instrucciones.text('Tenés un punto!! Ahora tocá ctrl, de nuevo muy rápido.')
+    else if (NIVEL == 3) instrucciones.text('Tenés dos puntos!!')
     else if (NIVEL == 4) {
         instrucciones.text('Seguí sumando puntos!!')
         TUTORIAL = false
@@ -108,6 +104,9 @@ function agregarCaracter(){
     var input = $("#slashdot").val()
     input+=CARACTER
     $("#slashdot").val(input)
+    if (CARACTER && $("#slashdot").outerHeight() < $("#slashdot")[0].scrollHeight ) {
+        $("#slashdot").outerHeight($("#slashdot")[0].scrollHeight + parseFloat($('#slashdot').css('line-height'))-1)
+    }
 }
 
 function changeCaracter(char){
