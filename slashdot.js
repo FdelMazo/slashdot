@@ -53,12 +53,13 @@ $(document).ready(function(){
 function writeInstructions() {
     if (!TUTORIAL) return
     var instrucciones = $("#instrucciones")
-    if (NIVEL == 0) instrucciones.text('Mantené apretado el punto. No lo sueltes!')
-    else if (NIVEL == 1) instrucciones.text('Tocá solo una vez, lo más rápido que puedas, ctrl.')
-    else if (NIVEL == 2) instrucciones.text('Tenés un punto!! Ahora tocá ctrl, de nuevo muy rápido.')
-    else if (NIVEL == 3) instrucciones.text('Tenés dos puntos!!')
-    else if (NIVEL == 4) {
-        instrucciones.text('Seguí sumando puntos!!')
+    if (NIVEL == 0) instrucciones.html('Mantené apretado el punto <br> No lo sueltes nunca!')
+    else if (NIVEL == 1) instrucciones.html('Apretá una sola vez y soltá lo más rápido que puedas la tecla ctrl <br> Tenés que lograr este patron: .....>.....')
+    else if (NIVEL == 2) instrucciones.html('Tenés un punto!! <br> Ahora hacé lo mismo, pero dibuja ...>....>>.....')
+    else if (NIVEL == 3) instrucciones.html('Tenés dos puntos!! <br>...>....>>....>>>....')
+    else if (NIVEL == 4) instrucciones.html('Seguí sumando puntos!!')
+    else if (NIVEL == 5) {
+        instrucciones.html ('...>......>>.......>>>......>>>>......>>>>>......')
         TUTORIAL = false
     }
 }
