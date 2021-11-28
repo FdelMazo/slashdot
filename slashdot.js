@@ -90,9 +90,9 @@ function perder(){
     clearGame()
     $("#puntosVal").text(0)
     
-    if (recordAct > $('#puntos3').html()){
-        postearRecord(recordAct.toString())
-    }
+    // if (recordAct > $('#puntos3').html()){
+    //     postearRecord(recordAct.toString())
+    // }
     writeInstructions()
 }
 
@@ -137,14 +137,23 @@ async function updateTableWrapper(){
     updateTable()
 }
 
-function updateTable(){
-    $.ajax({
-        url: DATOSAPI,
-        method: 'GET',
-        success: function(data) {
-            populateTable(data)
-        }
-    })
+function updateTable() {
+  // $.ajax({
+  //     url: DATOSAPI,
+  //     method: 'GET',
+  //     success: function(data) {
+  //         populateTable(data)
+  //     }
+  // })
+  populateTable({
+    feed: {
+      entry: [
+        { gsx$nombre: { $t: "juampi" }, gsx$puntos: { $t: "11" } },
+        { gsx$nombre: { $t: "Lu" }, gsx$puntos: { $t: "7" } },
+        { gsx$nombre: { $t: "oli" }, gsx$puntos: { $t: "5" } },
+      ],
+    },
+  });
 }
 
 function populateTable(api){
