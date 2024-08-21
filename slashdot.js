@@ -149,8 +149,6 @@ function updateTable() {
     feed: {
       entry: [
         { gsx$nombre: { $t: "juampi" }, gsx$puntos: { $t: "11" } },
-        { gsx$nombre: { $t: "Lu" }, gsx$puntos: { $t: "7" } },
-        { gsx$nombre: { $t: "oli" }, gsx$puntos: { $t: "5" } },
       ],
     },
   });

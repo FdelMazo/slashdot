@@ -63,6 +63,11 @@ table  {
     background-color: var(--color-puntos)
 }
 
+.table {
+    width: 500px;
+    margin: 24px auto;
+}
+
 th {
     background: var(--color-terciario);
 }
